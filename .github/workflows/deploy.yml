@@ -61,15 +61,15 @@ jobs:
       # RUN_PROJECT: It is the name of project in the GCP.
       - name: Build Docker Image
         run: |
-          docker build -t gcr.io/${{secrets.RUN_PROJECT}}/demo-image830 .
+          docker build -t gcr.io/sirpicloudrun/demo-image830 .
       
       # vault kv get -address="https://vault.sirpi.co.in" -field=env kv/projects/herokutest > .env
       # vault kv get -address="https://vault.sirpi.co.in" -field=ignore kv/projects/herokutest > .gitignore
       - name: Push Docker image
         run: |
-          docker push gcr.io/${{secrets.RUN_PROJECT}}/demo-image830
+          docker push gcr.io/sirpicloudrun/demo-image830
       
       - name: Deploy Docker image
         run: |
-          gcloud run deploy demo-image830 --project=${{secrets.RUN_PROJECT}} --image gcr.io/${{secrets.RUN_PROJECT}}/demo-image830 --region us-central1 --allow-unauthenticated --platform managed
+          gcloud run deploy demo-image830 --project=${{secrets.RUN_PROJECT}} --image gcr.io/sirpicloudrun/demo-image830 --region us-central1 --allow-unauthenticated --platform managed
    
